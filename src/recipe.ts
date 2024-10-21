@@ -5,6 +5,8 @@ export type RecipeType = {
   name: string
 }
 
+export type CreateRecipeType = Omit<RecipeType, 'id'>
+
 export class Recipe {
   private store;
 
@@ -14,6 +16,18 @@ export class Recipe {
 
   async readAll() {
     return await this.store.getValue();
+  }
+
+  async addRecipe(recipe: CreateRecipeType){
+    const recipes = await this.store.getValue();
+    const newId = recipes.length > 0 ? Math.max(...recipes.map(recipe => recipe.id)) + 1 : 1;
+    const newRecipe: RecipeType = {
+      id: newId,
+      name: recipe.name,
+    };
+    recipes.push(newRecipe);
+    await this.store.setValue(recipes);
+    return newRecipe;
   }
 }
 
