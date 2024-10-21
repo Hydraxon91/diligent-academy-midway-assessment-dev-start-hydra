@@ -25,6 +25,7 @@ export class Recipe {
     const newRecipe: RecipeType = {
       id: newId,
       name: recipe.name,
+      difficulty: recipe.difficulty
     };
     recipes.push(newRecipe);
     await this.store.setValue(recipes);
