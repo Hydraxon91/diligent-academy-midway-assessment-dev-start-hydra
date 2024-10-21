@@ -50,3 +50,7 @@ export async function create(store: Store<RecipeType[]>, args: string[]){
     console.log(`Recipe created: ID ${newRecipe.id}, Name: ${newRecipe.name}, difficulty: ${newRecipe.difficulty}`);
   }
 }
+
+export async function updateName(store: Store<RecipeType[]>, args: string[]){
+
+}
