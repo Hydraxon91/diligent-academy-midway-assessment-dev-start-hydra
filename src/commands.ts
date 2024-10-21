@@ -15,3 +15,16 @@ export async function list(store: Store<RecipeType[]>, args: string[]) {
     console.log(formatted);
   }
 }
+
+export async function details(store: Store<RecipeType[]>, args: string[]){
+  if (args.length!==1) {
+    console.error(`Details shouldn't have 1 argument which is a number`)
+  }
+  if (isNaN(Number(args[0]))) {
+    console.error(`'${args[0]}' is not a number.`);
+  }
+  else{
+    
+    
+  }
+}
