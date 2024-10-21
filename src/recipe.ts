@@ -31,6 +31,18 @@ export class Recipe {
     await this.store.setValue(recipes);
     return newRecipe;
   }
+
+  async updateName(id: Number, newName: string){
+    const recipes = await this.store.getValue();
+    const recipeToUpdate = recipes.find(recipe => recipe.id === id);
+    if (!recipeToUpdate) {
+      console.error(`no ${id} found`);
+      return null
+    }
+    recipeToUpdate.name = newName;
+    await this.store.setValue(recipes);
+    return recipeToUpdate;
+  }
 }
 
 
