@@ -32,3 +32,15 @@ export async function details(store: Store<RecipeType[]>, args: string[]){
     console.log(`Name:: ${requestedRecipe?.name}`);
   }
 }
+
+export async function create(store: Store<RecipeType[]>, args: string[]){
+  if (args.length<1) {
+    console.error(`Create should get arguments, you can use spaces they will be combined to one recipe`)
+  }
+  else{
+    const recipeName = args.join(' ').trim();
+    const recipe = new Recipe(store);
+    const newRecipe = await recipe.addRecipe({ name: recipeName });
+    console.log(`Recipe created: ID ${newRecipe.id}, Name: ${newRecipe.name}`);
+  }
+}
