@@ -8,8 +8,8 @@ const fileToStore = join(__dirname, '..', 'data.json');
 type RecipeStore = RecipeType[];
 
 const initialRecipes: RecipeType[] = [
-  {id: 1, name: 'Scrambled Egg'},
-  {id: 2, name: 'Pancake'}
+  {id: 1, name: 'Scrambled Egg', difficulty: 'easy'},
+  {id: 2, name: 'Pancake', difficulty: 'hard'}
 ]
 
 const store = new FileStore<RecipeStore>(fileToStore, initialRecipes);

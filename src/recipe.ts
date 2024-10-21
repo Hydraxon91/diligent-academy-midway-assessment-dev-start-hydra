@@ -3,6 +3,7 @@ import { Store } from "./stores/store.type"
 export type RecipeType = {
   id: number
   name: string
+  difficulty: 'easy' | 'medium' | 'hard'
 }
 
 export type CreateRecipeType = Omit<RecipeType, 'id'>
