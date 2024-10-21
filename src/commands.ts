@@ -34,13 +34,19 @@ export async function details(store: Store<RecipeType[]>, args: string[]){
 }
 
 export async function create(store: Store<RecipeType[]>, args: string[]){
-  if (args.length<1) {
-    console.error(`Create should get arguments, you can use spaces they will be combined to one recipe`)
+  if (args.length !== 2) {
+    console.error(`Create should get 2 arguments in ' ' and difficulty 'easy' 'medium' 'hard'`)
   }
+  const difficulty = args[1].trim() as 'easy' | 'medium' | 'hard';
+  
+  if(!['easy', 'medium', 'hard'].includes(difficulty)){
+    console.error(`Not a valid difficulty. 'easy', 'medium', or 'hard'.`);
+  }
+
   else{
-    const recipeName = args.join(' ').trim();
+    const recipeName = args[0].trim();
     const recipe = new Recipe(store);
-    const newRecipe = await recipe.addRecipe({ name: recipeName });
-    console.log(`Recipe created: ID ${newRecipe.id}, Name: ${newRecipe.name}`);
+    const newRecipe = await recipe.addRecipe({ name: recipeName, difficulty: difficulty });
+    console.log(`Recipe created: ID ${newRecipe.id}, Name: ${newRecipe.name}, difficulty: ${newRecipe.difficulty}`);
   }
 }
